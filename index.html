@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Tokenizer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      textarea {
+        width: 100%;
+        height: 150px;
+      }
+      button {
+        padding: 10px 20px;
+        margin-top: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .result {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f4f4f4;
+        border: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Text Tokenizer</h1>
+      <p>
+        Masukkan teks di bawah ini, lalu tekan "Proses Teks" untuk melihat
+        hasilnya:
+      </p>
+      <textarea
+        id="textInput"
+        placeholder="Masukkan teks Anda di sini..."
+      ></textarea>
+      <button onclick="processText()">Proses Teks</button>
+
+      <div class="result" id="result">
+        <!-- Hasil tokenisasi akan ditampilkan di sini -->
+      </div>
+    </div>
+
+    <script>
+      function processText() {
+        let text = document.getElementById("textInput").value;
+
+        // Proses teks: konversi ke huruf kecil dan hapus tanda baca
+        let processedText = text.toLowerCase().replace(/[^\w\s]/g, "");
+
+        // Pisahkan teks menjadi kata-kata
+        let words = processedText.split(/\s+/);
+
+        // Hasilkan output
+        let resultArea = document.getElementById("result");
+        resultArea.innerHTML = `<p>Ada ${words.length} kata.</p>`;
+
+        // Tampilkan setiap kata
+        words.forEach((word, index) => {
+          resultArea.innerHTML += `<p>Kata ${index + 1}: ${word}</p>`;
+        });
+      }
+    </script>
+  </body>
+</html>
